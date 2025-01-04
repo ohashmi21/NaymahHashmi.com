@@ -19,7 +19,7 @@ public class Project{
 
     public string description {get; set; } = null!;
 
-    public List<Components> Layout {get; set; } = new();
+    public List<Components> layout {get; set; } = new();
 
 }
 

@@ -34,7 +34,7 @@ public class ProjectsController : ControllerBase
     public async Task<IActionResult> Post(Project newProject)
     {
         await _projectsService.CreateAsync(newProject);
-
+        
         return CreatedAtAction(nameof(Get), new { id = newProject.Id }, newProject);
     }
 
