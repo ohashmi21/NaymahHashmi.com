@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ohash\\Projects\\NaymahHashmi.com\\NaymahHashmi.com\\server\\server.csproj": {}
+    "/Users/omairhashmi/NaymahHashmi.com/NaymahHashmi.com/server/server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ohash\\Projects\\NaymahHashmi.com\\NaymahHashmi.com\\server\\server.csproj": {
+    "/Users/omairhashmi/NaymahHashmi.com/NaymahHashmi.com/server/server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ohash\\Projects\\NaymahHashmi.com\\NaymahHashmi.com\\server\\server.csproj",
+        "projectUniqueName": "/Users/omairhashmi/NaymahHashmi.com/NaymahHashmi.com/server/server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\ohash\\Projects\\NaymahHashmi.com\\NaymahHashmi.com\\server\\server.csproj",
-        "packagesPath": "C:\\Users\\ohash\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ohash\\Projects\\NaymahHashmi.com\\NaymahHashmi.com\\server\\obj\\",
+        "projectPath": "/Users/omairhashmi/NaymahHashmi.com/NaymahHashmi.com/server/server.csproj",
+        "packagesPath": "/Users/omairhashmi/.nuget/packages/",
+        "outputPath": "/Users/omairhashmi/NaymahHashmi.com/NaymahHashmi.com/server/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ohash\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/Users/omairhashmi/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net8.0"
+          "net9.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net8.0": {
-            "targetAlias": "net8.0",
+          "net9.0": {
+            "targetAlias": "net9.0",
             "projectReferences": {}
           }
         },
@@ -36,12 +36,13 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "direct"
-        }
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
       },
       "frameworks": {
-        "net8.0": {
-          "targetAlias": "net8.0",
+        "net9.0": {
+          "targetAlias": "net9.0",
           "dependencies": {
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
@@ -75,7 +76,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.402/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
