@@ -1,7 +1,9 @@
-<script setup lang="ts"></script>
-
 <template>
   <main>
-    <h1>Naymah Portfolio</h1>
+    <SiteHeader></SiteHeader>
   </main>
 </template>
+
+<script setup lang="ts">
+import SiteHeader from '@/components/SiteHeader.vue'
+</script>

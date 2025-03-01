@@ -14,4 +14,8 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
-<style scoped></style>
+<style>
+html {
+  font-family: 'Segoe UI', 'Segoe UI', Calibri, sans-serif;
+}
+</style>
