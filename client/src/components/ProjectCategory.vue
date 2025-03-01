@@ -1,6 +1,11 @@
 <template>
-  <div ref="root" id="container">
-    <div id="img-container">
+  <div
+    ref="root"
+    id="project-category-container"
+    @mouseover="showProjects = true"
+    @mouseout="showProjects = false"
+  >
+    <div ref="imgContainer" id="img-container">
       <div id="dotted-lines">
         <div id="horizontal-dotted"></div>
         <div id="vertical-dashed"></div>
@@ -8,31 +13,47 @@
       </div>
       <div id="img-background"></div>
     </div>
-    <p>{{ props.projectCategory.categoryName }}</p>
+    <p>{{ props.projectCategory.categoryName.toUpperCase() }}</p>
+    <div id="project-items-container">
+      <ProjectItem
+        v-for="project in props.projectCategory.projects"
+        :key="project.projectName"
+        :project="project"
+        :color="props.projectCategory.colorHash"
+        :show="showProjects"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useTemplateRef, onMounted } from 'vue'
+import { useTemplateRef, onMounted, ref } from 'vue'
 import ProjectCategoryModel from '@/models/ProjectCategoryModel'
+import ProjectItem from './ProjectItem.vue'
 
 const props = defineProps<{ projectCategory: ProjectCategoryModel }>()
 const root = useTemplateRef('root')
 
+const showProjects = ref(false)
+
 onMounted(() => {
   root.value.style.setProperty('--background-color', props.projectCategory.colorHash + '40')
   root.value.style.setProperty('--dotted-color', props.projectCategory.colorHash + 'DD')
+  root.value.style.setProperty('--text-color', props.projectCategory.colorHash)
 })
 </script>
 
 <style lang="scss" scoped>
-#container {
+#project-category-container {
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  margin: 0 50px;
 
   p {
     text-align: center;
+    margin: 25px 0 0 0;
+    font-weight: bold;
+    color: var(--text-color);
   }
 
   #img-container {

@@ -16,7 +16,7 @@ import MockData from '@/assets/mockdata'
 <style lang="scss" scoped>
 nav {
   width: min-content;
-  margin: 10% auto auto auto;
+  margin: 150px auto auto auto;
   display: flex;
   flex-direction: row;
 }
