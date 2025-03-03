@@ -16,6 +16,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <style>
 html {
+  scroll-behavior: smooth;
   font-family: 'Segoe UI', 'Segoe UI', Calibri, sans-serif;
 }
 </style>
