@@ -1,7 +1,6 @@
 <template>
   <main id="home-view-container">
     <div id="primary-component-container">
-      <SiteHeader />
       <ProjectCategories id="project-categories" />
       <div id="experience-link" @click="scrollToResume()">
         <p>EXPERIENCE</p>
@@ -15,7 +14,6 @@
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
 import ProjectCategories from '@/components/ProjectCategories.vue'
-import SiteHeader from '@/components/SiteHeader.vue'
 
 const resume = useTemplateRef('resume')
 

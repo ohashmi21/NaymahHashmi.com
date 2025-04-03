@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SiteHeader from '@/components/SiteHeader.vue'
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
@@ -7,16 +8,25 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
+        <RouterLink to="/project">Project</RouterLink>
       </nav>
     </div>
   </header>
 
-  <RouterView />
+  <SiteHeader />
+  <div id="portfolio-body">
+    <RouterView />
+  </div>
 </template>
 
 <style>
 html {
   scroll-behavior: smooth;
   font-family: 'Segoe UI', 'Segoe UI', Calibri, sans-serif;
+
+  #portfolio-body {
+    width: min-content;
+    margin: auto;
+  }
 }
 </style>

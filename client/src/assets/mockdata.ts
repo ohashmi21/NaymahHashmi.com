@@ -1,4 +1,6 @@
 import ProjectCategoryModel from '@/models/ProjectCategoryModel'
+import ProjectContentModel from '@/models/ProjectContentModel'
+import { ProjectEntryType } from '@/models/ProjectEntryType'
 import ProjectModel from '@/models/ProjectModel'
 
 /** Temporary object representing mock data to render UI */
@@ -33,6 +35,25 @@ export default class MockData {
       new ProjectModel('Category 5 Project 2', ''),
       new ProjectModel('Category 5 Project 3', ''),
       new ProjectModel('Category 5 Project 4', ''),
+    ]),
+  ]
+
+  static mockImageUrl = 'https://static.thenounproject.com/png/526867-200.png'
+
+  static projectContent = [
+    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 1', [
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+    ]),
+    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 2', [
+      MockData.mockImageUrl,
+    ]),
+    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 3', [
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
     ]),
   ]
 }
