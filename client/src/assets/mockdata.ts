@@ -46,6 +46,9 @@ export default class MockData {
       MockData.mockImageUrl,
       MockData.mockImageUrl,
     ]),
+    new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 1', [
+      MockData.mockImageUrl,
+    ]),
     new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 2', [
       MockData.mockImageUrl,
     ]),
@@ -53,6 +56,9 @@ export default class MockData {
       MockData.mockImageUrl,
       MockData.mockImageUrl,
       MockData.mockImageUrl,
+      MockData.mockImageUrl,
+    ]),
+    new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 2', [
       MockData.mockImageUrl,
     ]),
   ]
