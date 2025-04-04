@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import ProjectCategory from '@/components/ProjectCategory.vue'
+import ProjectCategory from '@/components/homeview/ProjectCategory.vue'
 import MockData from '@/assets/mockdata'
 </script>
 
