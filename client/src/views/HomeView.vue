@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { useTemplateRef } from 'vue'
-import ProjectCategories from '@/components/ProjectCategories.vue'
+import ProjectCategories from '@/components/homeview/ProjectCategories.vue'
 
 const resume = useTemplateRef('resume')
 
