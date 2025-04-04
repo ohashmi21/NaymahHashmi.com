@@ -9,6 +9,10 @@
         v-if="entry.entryType == ProjectEntryType.SINGLE_IMAGE"
         :content-model="entry"
       />
+      <LongImageProjectEntry
+        v-if="entry.entryType == ProjectEntryType.LONG_IMAGE"
+        :content-model="entry"
+      />
     </div>
   </div>
 </template>
@@ -18,6 +22,7 @@ import { ProjectEntryType } from '@/models/ProjectEntryType'
 import ImageRowProjectEntry from './ImageRowProjectEntry.vue'
 import SingleImageProjectEntry from './SingleImageProjectEntry.vue'
 import MockData from '@/assets/mockdata'
+import LongImageProjectEntry from './LongImageProjectEntry.vue'
 </script>
 
 <style lang="scss" scoped></style>
