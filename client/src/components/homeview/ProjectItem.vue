@@ -1,16 +1,24 @@
 <template>
   <div ref="root" id="project-item-container">
     <div id="project-connector"></div>
-    <div id="project-container"></div>
+    <div
+      id="project-container"
+      @click="
+        () => {
+          router.replace({ name: 'project', query: { projectName } })
+        }
+      "
+    ></div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useTemplateRef, onMounted, onUpdated } from 'vue'
-import ProjectModel from '@/models/ProjectModel'
+import { useRouter } from 'vue-router'
 
-const props = defineProps<{ project: ProjectModel; color: string; show: boolean }>()
+const props = defineProps<{ projectName: string; color: string; show: boolean }>()
 const root = useTemplateRef('root')
+const router = useRouter()
 
 onMounted(() => {
   root.value.style.setProperty('--color', props.color)
@@ -60,6 +68,10 @@ onUpdated(() => {
     height: 80px;
     border: 1px solid var(--color);
     border-radius: 100%;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

@@ -1,7 +1,7 @@
 <template>
   <div id="project-page-entry-container">
-    <ProjectBannerEntry :title="MockData.projects[0].projects[0].projectName" />
-    <div v-for="entry in MockData.projectContent" :key="entry.title">
+    <ProjectBannerEntry :title="project.projectName" />
+    <div v-for="entry in project.projectContent" :key="entry.title">
       <ImageRowProjectEntry
         v-if="entry.entryType == ProjectEntryType.IMAGE_ROW"
         :content-model="entry"
@@ -22,9 +22,16 @@
 import { ProjectEntryType } from '@/models/ProjectEntryType'
 import ImageRowProjectEntry from './ImageRowProjectEntry.vue'
 import SingleImageProjectEntry from './SingleImageProjectEntry.vue'
-import MockData from '@/assets/mockdata'
 import LongImageProjectEntry from './LongImageProjectEntry.vue'
 import ProjectBannerEntry from './ProjectBannerEntry.vue'
+import { useProjects } from '@/stores/Projects'
+import type ProjectModel from '@/models/ProjectModel'
+
+const props = defineProps<{ projectName: string }>()
+const projectsStore = useProjects()
+
+console.log(props.projectName)
+const project: ProjectModel = projectsStore.projects.get(props.projectName)!
 </script>
 
 <style lang="scss" scoped></style>
