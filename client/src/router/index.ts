@@ -14,6 +14,7 @@ const router = createRouter({
       path: '/project',
       name: 'project',
       component: ProjectView,
+      props: true,
     },
   ],
 })
