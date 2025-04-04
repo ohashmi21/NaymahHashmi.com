@@ -2,4 +2,5 @@
 export enum ProjectEntryType {
   IMAGE_ROW,
   SINGLE_IMAGE,
+  LONG_IMAGE,
 }

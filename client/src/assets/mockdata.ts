@@ -58,6 +58,7 @@ export default class MockData {
       MockData.mockImageUrl,
       MockData.mockImageUrl,
     ]),
+    new ProjectContentModel(ProjectEntryType.LONG_IMAGE, 'Long Row title', [MockData.mockImageUrl]),
     new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 2', [
       MockData.mockImageUrl,
     ]),
