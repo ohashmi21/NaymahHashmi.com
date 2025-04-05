@@ -5,14 +5,17 @@
       <ImageRowProjectEntry
         v-if="entry.entryType == ProjectEntryType.IMAGE_ROW"
         :content-model="entry"
+        :is-admin="isAdmin"
       />
       <SingleImageProjectEntry
         v-if="entry.entryType == ProjectEntryType.SINGLE_IMAGE"
         :content-model="entry"
+        :is-admin="isAdmin"
       />
       <LongImageProjectEntry
         v-if="entry.entryType == ProjectEntryType.LONG_IMAGE"
         :content-model="entry"
+        :is-admin="isAdmin"
       />
     </div>
     <div id="add-entry-container">
@@ -61,9 +64,7 @@ function toggleShowAddEntryList() {
 
 function addEntry(entryType: ProjectEntryType) {
   toggleShowAddEntryList()
-  project.projectContent.push(
-    new ProjectContentModel(entryType, 'Some title is being added', [MockData.mockImageUrl]),
-  )
+  project.projectContent.push(new ProjectContentModel(entryType, 'Some title is being added', []))
 }
 </script>
 
