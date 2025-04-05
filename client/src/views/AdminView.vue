@@ -1,12 +1,12 @@
 <template>
   <div>
-    <ProjectPageEntry :projectName="route.query.projectName" :is-admin="true" />
+    <ProjectView :projectName="route.query.projectName" :is-admin="true" />
   </div>
 </template>
 
 <script setup lang="ts">
-import ProjectPageEntry from '@/components/projectview/ProjectPageEntry.vue'
 import { useRoute } from 'vue-router'
+import ProjectView from './ProjectView.vue'
 
 const route = useRoute()
 </script>
