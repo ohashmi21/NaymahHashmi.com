@@ -1,17 +1,14 @@
 <template>
   <div>
-    <ProjectPageEntry :projectName="route.query.projectName" :is-admin="false" />
+    <ProjectPageEntry :projectName="route.query.projectName" :is-admin="true" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
 import ProjectPageEntry from '@/components/projectview/ProjectPageEntry.vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-
-onMounted(() => {})
 </script>
 
 <style lang="scss" scoped></style>

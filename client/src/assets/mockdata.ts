@@ -18,6 +18,7 @@ export default class MockData {
     ]),
     new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 2', [
       MockData.mockImageUrl,
+      MockData.mockImageUrl,
     ]),
     new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 3', [
       MockData.mockImageUrl,

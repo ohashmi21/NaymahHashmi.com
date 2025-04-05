@@ -1,12 +1,17 @@
 <template>
   <div id="single-image-project-entry-container">
-    <img :src="props.contentModel.imageUrls[0]" class="image-item" />
+    <MediaUploadableImage
+      :showUpload="false"
+      :imgUrl="props.contentModel.imageUrls[0]"
+      class="image-item"
+    />
     <p id="title">{{ props.contentModel.title }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import type ProjectContentModel from '@/models/ProjectContentModel'
+import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 
 const props = defineProps<{ contentModel: ProjectContentModel }>()
 </script>
@@ -18,8 +23,8 @@ const props = defineProps<{ contentModel: ProjectContentModel }>()
   display: flex;
   flex-direction: row;
 
-  img {
-    width: 500px;
+  .image-item {
+    width: 70%;
   }
 }
 </style>
