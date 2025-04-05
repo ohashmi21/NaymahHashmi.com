@@ -2,7 +2,7 @@
   <div id="long-image-project-entry-container">
     <div id="image-container">
       <MediaUploadableImage
-        :showUpload="false"
+        :showUpload="isAdmin"
         :imgUrl="props.contentModel.imageUrls[0]"
         class="image-item"
       />
@@ -15,7 +15,7 @@
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 
-const props = defineProps<{ contentModel: ProjectContentModel }>()
+const props = defineProps<{ contentModel: ProjectContentModel; isAdmin: boolean }>()
 </script>
 
 <style lang="scss" scoped>
