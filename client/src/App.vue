@@ -8,7 +8,8 @@ import { RouterLink, RouterView } from 'vue-router'
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/project">Project</RouterLink>
+        <div id="spacer"></div>
+        <RouterLink to="/admin">Admin</RouterLink>
       </nav>
     </div>
   </header>
@@ -27,6 +28,11 @@ html {
   #portfolio-body {
     width: min-content;
     margin: auto;
+  }
+
+  #spacer {
+    display: inline-block;
+    width: 50px;
   }
 }
 </style>
