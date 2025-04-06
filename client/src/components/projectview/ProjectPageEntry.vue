@@ -1,19 +1,22 @@
 <template>
   <div id="project-page-entry-container">
     <ImageRowProjectEntry
-      v-if="projectEntry.entryType == ProjectEntryType.IMAGE_ROW"
-      :content-model="projectEntry"
+      v-if="reactiveEntry.entry.entryType == ProjectEntryType.IMAGE_ROW"
+      :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
+      :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
     />
     <SingleImageProjectEntry
-      v-if="projectEntry.entryType == ProjectEntryType.SINGLE_IMAGE"
-      :content-model="projectEntry"
+      v-if="reactiveEntry.entry.entryType == ProjectEntryType.SINGLE_IMAGE"
+      :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
+      :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
     />
     <LongImageProjectEntry
-      v-if="projectEntry.entryType == ProjectEntryType.LONG_IMAGE"
-      :content-model="projectEntry"
+      v-if="reactiveEntry.entry.entryType == ProjectEntryType.LONG_IMAGE"
+      :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
+      :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
     />
   </div>
 </template>
@@ -24,8 +27,14 @@ import ImageRowProjectEntry from './ImageRowProjectEntry.vue'
 import SingleImageProjectEntry from './SingleImageProjectEntry.vue'
 import LongImageProjectEntry from './LongImageProjectEntry.vue'
 import ProjectContentModel from '@/models/ProjectContentModel'
+import { reactive } from 'vue'
 
-defineProps<{ projectEntry: ProjectContentModel; isAdmin: boolean }>()
+const props = defineProps<{ projectEntry: ProjectContentModel; isAdmin: boolean }>()
+const reactiveEntry = reactive({ entry: props.projectEntry })
+
+function onImageUploaded(imgUrl: string) {
+  reactiveEntry.entry.imageUrls = [...reactiveEntry.entry.imageUrls, imgUrl]
+}
 </script>
 
 <style lang="scss" scoped>

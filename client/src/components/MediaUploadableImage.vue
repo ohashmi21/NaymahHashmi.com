@@ -1,6 +1,7 @@
 <template>
   <div id="media-upload-image-container">
-    <div v-if="showUpload">
+    <img v-if="imgUrl" :src="imgUrl" />
+    <div id="image-upload-input-container" v-else-if="allowUpload">
       <button id="image-upload-input-container-button" :onclick="onUploadImageClick">
         <p>+</p>
         <input
@@ -9,23 +10,38 @@
           id="image-upload-input"
           name="filename"
           accept="image/*"
+          v-on:change="handleFileUpload($event)"
         />
       </button>
     </div>
-    <img v-else-if="imgUrl" :src="imgUrl" />
   </div>
 </template>
 
 <script setup lang="ts">
+import ImageUploadHandler from '@/utilities/ImageUploadHandler'
 import { useTemplateRef } from 'vue'
+import { onUpdated } from 'vue'
 
-const props = defineProps<{ showUpload: boolean; imgUrl: string }>()
+const props = defineProps<{
+  allowUpload: boolean
+  imgUrl: string
+  onImageLoaded: (arg0: string) => void
+}>()
 
 const uploadButton = useTemplateRef('upload-button')
 
 function onUploadImageClick() {
   uploadButton.value?.click()
 }
+
+function handleFileUpload(event: Event) {
+  props.onImageLoaded(ImageUploadHandler.uploadImage(event.target!.files![0]))
+}
+
+onUpdated(() => {
+  console.log('Updating media uploadable image: ' + props.allowUpload)
+  console.log('Updating media uploadable image: ' + props.imgUrl)
+})
 </script>
 
 <style lang="scss" scoped>
@@ -40,8 +56,9 @@ function onUploadImageClick() {
     height: 100%;
   }
 
-  div {
-    height: 200px;
+  #image-upload-input-container {
+    min-height: 200px;
+    height: 100%;
     #image-upload-input-container-button {
       position: absolute;
       top: 50%;
