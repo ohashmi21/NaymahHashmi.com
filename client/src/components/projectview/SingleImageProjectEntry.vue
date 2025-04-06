@@ -1,11 +1,12 @@
 <template>
   <div id="single-image-project-entry-container">
     <MediaUploadableImage
-      :showUpload="isAdmin"
-      :imgUrl="props.contentModel.imageUrls[0]"
+      :allow-upload="isAdmin"
+      :imgUrl="contentModel.imageUrls[0]"
+      :on-image-loaded="onImageUploaded"
       class="image-item"
     />
-    <p id="title">{{ props.contentModel.title }}</p>
+    <p id="title">{{ contentModel.title }}</p>
   </div>
 </template>
 
@@ -13,7 +14,11 @@
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 
-const props = defineProps<{ contentModel: ProjectContentModel; isAdmin: boolean }>()
+defineProps<{
+  contentModel: ProjectContentModel
+  isAdmin: boolean
+  onImageUploaded: (arg0: string) => void
+}>()
 </script>
 
 <style lang="scss" scoped>

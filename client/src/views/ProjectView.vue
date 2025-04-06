@@ -54,7 +54,7 @@ const project: ProjectModel = props.isAdmin
 onMounted(() => {})
 
 function projectExists(projectName: string | undefined): boolean {
-  return projectName && projectsStore.projects.get(projectName!)
+  return !!projectName && !!projectsStore.projects.get(projectName!)
 }
 
 function addEntry(entryType: ProjectEntryType) {

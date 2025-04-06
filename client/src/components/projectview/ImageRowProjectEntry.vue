@@ -9,8 +9,9 @@
       >
         <MediaUploadableImage
           v-if="index - 1 < props.contentModel.imageUrls.length || isAdmin"
-          :showUpload="isAdmin && index - 1 == indexOfUploadImageButton"
-          :imgUrl="props.contentModel.imageUrls[index - 1] ?? ''"
+          :allow-upload="isAdmin && index - 1 == indexOfUploadImageButton"
+          :imgUrl="contentModel.imageUrls[index - 1] ?? ''"
+          :on-image-loaded="onImageUploaded"
         />
       </div>
     </div>
@@ -21,17 +22,27 @@
 <script setup lang="ts">
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
-import { onMounted, ref } from 'vue'
+import { onMounted, onUpdated, ref } from 'vue'
 
-const props = defineProps<{ contentModel: ProjectContentModel; isAdmin: boolean }>()
+const props = defineProps<{
+  contentModel: ProjectContentModel
+  isAdmin: boolean
+  onImageUploaded: (arg0: string) => void
+}>()
 const MAX_ITEM_COUNT = 4
 
 const indexOfUploadImageButton = ref(-1)
 
-onMounted(() => {
-  console.log(props.contentModel.imageUrls.length)
+function updateIndexOfUploadImageButton() {
   indexOfUploadImageButton.value = Math.min(props.contentModel.imageUrls.length, MAX_ITEM_COUNT)
-  console.log(indexOfUploadImageButton)
+}
+
+onMounted(() => {
+  updateIndexOfUploadImageButton()
+})
+
+onUpdated(() => {
+  updateIndexOfUploadImageButton()
 })
 </script>
 
