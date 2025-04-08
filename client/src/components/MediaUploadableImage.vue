@@ -20,7 +20,6 @@
 <script setup lang="ts">
 import ImageUploadHandler from '@/utilities/ImageUploadHandler'
 import { useTemplateRef } from 'vue'
-import { onUpdated } from 'vue'
 
 const props = defineProps<{
   allowUpload: boolean
@@ -37,11 +36,6 @@ function onUploadImageClick() {
 function handleFileUpload(event: Event) {
   props.onImageLoaded(ImageUploadHandler.uploadImage(event.target!.files![0]))
 }
-
-onUpdated(() => {
-  console.log('Updating media uploadable image: ' + props.allowUpload)
-  console.log('Updating media uploadable image: ' + props.imgUrl)
-})
 </script>
 
 <style lang="scss" scoped>

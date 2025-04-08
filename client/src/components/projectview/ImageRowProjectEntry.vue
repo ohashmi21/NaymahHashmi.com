@@ -15,7 +15,13 @@
         />
       </div>
     </div>
-    <p id="title">{{ props.contentModel.title }}</p>
+    <div id="project-caption-container">
+      <EditableText
+        :value="contentModel.title"
+        :is-admin="isAdmin"
+        :on-text-updated="onCaptionUpdated"
+      />
+    </div>
   </div>
 </template>
 
@@ -23,11 +29,13 @@
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 import { onMounted, onUpdated, ref } from 'vue'
+import EditableText from '../EditableText.vue'
 
 const props = defineProps<{
   contentModel: ProjectContentModel
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
+  onCaptionUpdated: (arg0: string) => void
 }>()
 const MAX_ITEM_COUNT = 4
 

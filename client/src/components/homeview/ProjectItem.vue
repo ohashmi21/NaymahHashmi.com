@@ -21,16 +21,16 @@ const root = useTemplateRef('root')
 const router = useRouter()
 
 onMounted(() => {
-  root.value.style.setProperty('--color', props.color)
+  root.value?.style.setProperty('--color', props.color)
 })
 
 onUpdated(() => {
   if (props.show) {
-    root.value.classList.add('show')
-    root.value.classList.remove('hide')
+    root.value?.classList.add('show')
+    root.value?.classList.remove('hide')
   } else {
-    root.value.classList.add('hide')
-    root.value.classList.remove('show')
+    root.value?.classList.add('hide')
+    root.value?.classList.remove('show')
   }
 })
 </script>

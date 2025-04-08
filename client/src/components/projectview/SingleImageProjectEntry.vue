@@ -6,18 +6,26 @@
       :on-image-loaded="onImageUploaded"
       class="image-item"
     />
-    <p id="title">{{ contentModel.title }}</p>
+    <div id="project-caption-container">
+      <EditableText
+        :value="contentModel.title"
+        :is-admin="isAdmin"
+        :on-text-updated="onCaptionUpdated"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
+import EditableText from '../EditableText.vue'
 
 defineProps<{
   contentModel: ProjectContentModel
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
+  onCaptionUpdated: (arg0: string) => void
 }>()
 </script>
 
