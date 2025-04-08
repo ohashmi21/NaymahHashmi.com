@@ -1,12 +1,36 @@
 <template>
   <div id="project-banner-entry-container">
-    <div id="banner-container"></div>
-    <p id="title">{{ props.title }}</p>
+    <div id="banner-container">
+      <MediaUploadableImage
+        :allow-upload="isAdmin"
+        :imgUrl="imgUrl"
+        :on-image-loaded="onImageUploaded"
+        class="image-item"
+      />
+    </div>
+    <div id="project-title-container">
+      <EditableText
+        :value="title"
+        :is-admin="isAdmin"
+        font-size="24px"
+        font-weight="bold"
+        :on-text-updated="onTitleUpdated"
+      />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ title: string }>()
+import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
+import EditableText from '@/components/EditableText.vue'
+
+defineProps<{
+  imgUrl: string
+  title: string
+  isAdmin: boolean
+  onImageUploaded: (arg0: string) => void
+  onTitleUpdated: (arg0: string) => void
+}>()
 </script>
 
 <style lang="scss" scoped>
@@ -17,14 +41,11 @@ const props = defineProps<{ title: string }>()
     border: 1px solid black;
     width: 100%;
     height: 250px;
-
-    background-image: linear-gradient(to right, gold, white);
   }
 
-  #title {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 24px;
+  #project-title-container {
+    width: 100%;
+    margin-top: 15px;
   }
 }
 </style>

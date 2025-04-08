@@ -1,6 +1,12 @@
 <template>
   <div id="project-view-container">
-    <ProjectBannerEntry :title="project.projectName" />
+    <ProjectBannerEntry
+      :img-url="project.projectBannerImgUrl"
+      :title="project.projectName"
+      :is-admin="isAdmin"
+      :on-image-uploaded="onBannerImageUploaded"
+      :on-title-updated="onTitleUpdated"
+    />
     <div v-for="entry in project.projectContent" :key="entry.title">
       <ProjectPageEntry :projectEntry="entry" :is-admin="isAdmin" />
     </div>
@@ -18,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { reactive } from 'vue'
 import ProjectPageEntry from '@/components/projectview/ProjectPageEntry.vue'
 import { useRouter, useRoute } from 'vue-router'
 import ProjectModel from '@/models/ProjectModel'
@@ -47,11 +53,17 @@ if (!projectExists(projectName) && !props.isAdmin) {
   router.replace({ name: 'home' })
 }
 
-const project: ProjectModel = props.isAdmin
-  ? new ProjectModel('', '', [])
-  : projectsStore.projects.get(projectName!)!
+const project: ProjectModel = reactive(
+  props.isAdmin ? new ProjectModel('', '', '', []) : projectsStore.projects.get(projectName!)!,
+)
 
-onMounted(() => {})
+function onBannerImageUploaded(imgUrl: string) {
+  project.projectBannerImgUrl = imgUrl
+}
+
+function onTitleUpdated(title: string) {
+  project.projectName = title
+}
 
 function projectExists(projectName: string | undefined): boolean {
   return !!projectName && !!projectsStore.projects.get(projectName!)
@@ -59,7 +71,7 @@ function projectExists(projectName: string | undefined): boolean {
 
 function addEntry(entryType: ProjectEntryType) {
   toggleShowAddEntryList()
-  project.projectContent.push(new ProjectContentModel(entryType, 'Some title is being added', []))
+  project.projectContent.push(new ProjectContentModel(entryType, '', []))
 }
 
 function toggleShowAddEntryList() {

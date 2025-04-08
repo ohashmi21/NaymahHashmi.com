@@ -5,18 +5,21 @@
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
       :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
+      :on-caption-updated="onCaptionUpdated"
     />
     <SingleImageProjectEntry
       v-if="reactiveEntry.entry.entryType == ProjectEntryType.SINGLE_IMAGE"
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
       :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
+      :on-caption-updated="onCaptionUpdated"
     />
     <LongImageProjectEntry
       v-if="reactiveEntry.entry.entryType == ProjectEntryType.LONG_IMAGE"
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
       :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
+      :on-caption-updated="onCaptionUpdated"
     />
   </div>
 </template>
@@ -34,6 +37,10 @@ const reactiveEntry = reactive({ entry: props.projectEntry })
 
 function onImageUploaded(imgUrl: string) {
   reactiveEntry.entry.imageUrls = [...reactiveEntry.entry.imageUrls, imgUrl]
+}
+
+function onCaptionUpdated(caption: string) {
+  reactiveEntry.entry.title = caption
 }
 </script>
 
