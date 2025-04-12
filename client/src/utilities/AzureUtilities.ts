@@ -1,6 +1,11 @@
 import * as CryptoJS from 'crypto-js'
 import AzureConnectionInfo from './AzureConnectionInfo'
-import { BlockBlobClient } from '@azure/storage-blob'
+import {
+  BlockBlobClient,
+  BlobServiceClient,
+  AnonymousCredential,
+  newPipeline,
+} from '@azure/storage-blob'
 
 /** Utilities class ot handle connection connection and interaction with Azure. */
 export default class AzureUtilities {
@@ -41,12 +46,39 @@ export default class AzureUtilities {
     return `sv=${signedversion}&ss=${signedservice}&srt=${signedresourcetype}&sp=${signedpermissions}&se=${encodeURIComponent(signedexpiry)}&spr=${signedProtocol}&sig=${encodeURIComponent(sig)}`
   }
 
-  static async uploadToAzure(file: File) {
-    const blockBlobClient = new BlockBlobClient(
-      `https://${AzureConnectionInfo.accountName}.blob.core.windows.net/${AzureConnectionInfo.containerName}/myblockblob?${this.getSasToken()}`,
+  private static getBlockBlobClient(blobName: string) {
+    return new BlockBlobClient(
+      `https://${AzureConnectionInfo.accountName}.blob.core.windows.net/${AzureConnectionInfo.containerName}/${blobName}?${this.getSasToken()}`,
     )
-    const x = await blockBlobClient.uploadData(file as Blob)
+  }
 
-    console.log(x)
+  /**
+   * Uploads file to Azure.
+   *
+   * @returns promise containing value if upload was successful or not
+   */
+  static async uploadToAzure(blobName: string, file: File): Promise<boolean> {
+    return this.getBlockBlobClient(blobName)
+      .uploadData(file as Blob)
+      .then(() => true)
+      .catch(() => false)
+  }
+
+  static async retrieveBlobsFromAzure(): Promise<Blob | undefined> {
+    const pipeline = newPipeline(new AnonymousCredential())
+
+    const blobServiceClient = new BlobServiceClient(
+      `https://${AzureConnectionInfo.accountName}.blob.core.windows.net?${this.getSasToken()}`,
+      pipeline,
+    )
+
+    const containerClient = blobServiceClient.getContainerClient(AzureConnectionInfo.containerName)
+    for await (const blob of containerClient.listBlobsFlat()) {
+      const tempBlockBlobClient = containerClient.getBlockBlobClient(blob.name)
+      // Display blob name and URL
+      console.log(`\n\tname: ${blob.name}\n\tURL: ${tempBlockBlobClient.url}\n`)
+      const downloadBlockBlobResponse = await this.getBlockBlobClient(blob.name).download(0)
+      return await downloadBlockBlobResponse.blobBody
+    }
   }
 }

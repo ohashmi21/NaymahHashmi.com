@@ -45,7 +45,7 @@ function onSubmit() {
   } else if (projectName.value.length == 0) {
     displayErrorMessage('project')
   } else {
-    props.onProjectCreated(categoryName.value, projectName.value)
+    props.onProjectCreated(categoryName.value, projectName.value.trim())
   }
 }
 

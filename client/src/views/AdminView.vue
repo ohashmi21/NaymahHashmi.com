@@ -1,8 +1,9 @@
 <template>
   <div>
-    <ProjectView
+    <ProjectPage
       v-if="!!categoryName && !!projectName"
-      :projectName="route.query.projectName"
+      :category-name="categoryName"
+      :projectName="projectName"
       :is-admin="true"
     />
     <CreateProject v-else :on-project-created="onProjectCreated" />
@@ -11,11 +12,8 @@
 
 <script setup lang="ts">
 import { ref, type Ref } from 'vue'
-import { useRoute } from 'vue-router'
-import ProjectView from './ProjectView.vue'
 import CreateProject from '@/components/adminview/CreateProject.vue'
-
-const route = useRoute()
+import ProjectPage from '@/components/ProjectPage.vue'
 
 const categoryName: Ref<string | null> = ref(null)
 const projectName: Ref<string | null> = ref(null)

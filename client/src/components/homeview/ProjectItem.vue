@@ -5,7 +5,7 @@
       id="project-container"
       @click="
         () => {
-          router.replace({ name: 'project', query: { projectName } })
+          router.replace({ name: 'project', query: { categoryName, projectName } })
         }
       "
     ></div>
@@ -16,7 +16,12 @@
 import { useTemplateRef, onMounted, onUpdated } from 'vue'
 import { useRouter } from 'vue-router'
 
-const props = defineProps<{ projectName: string; color: string; show: boolean }>()
+const props = defineProps<{
+  categoryName: string
+  projectName: string
+  color: string
+  show: boolean
+}>()
 const root = useTemplateRef('root')
 const router = useRouter()
 

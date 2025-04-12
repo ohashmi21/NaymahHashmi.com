@@ -11,6 +11,7 @@
           v-if="index - 1 < props.contentModel.imageUrls.length || isAdmin"
           :allow-upload="isAdmin && index - 1 == indexOfUploadImageButton"
           :imgUrl="contentModel.imageUrls[index - 1] ?? ''"
+          :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
           :on-image-loaded="onImageUploaded"
         />
       </div>
@@ -30,8 +31,11 @@ import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 import { onMounted, onUpdated, ref } from 'vue'
 import EditableText from '../EditableText.vue'
+import FileNameUtilties from '@/utilities/FileNameUtilities'
 
 const props = defineProps<{
+  categoryName: string
+  projectName: string
   contentModel: ProjectContentModel
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
