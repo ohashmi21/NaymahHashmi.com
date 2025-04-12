@@ -55,13 +55,14 @@ export default class AzureUtilities {
   /**
    * Uploads file to Azure.
    *
-   * @returns promise containing value if upload was successful or not
+   * @returns URL of blob in Azure
    */
-  static async uploadToAzure(blobName: string, file: File): Promise<boolean> {
-    return this.getBlockBlobClient(blobName)
-      .uploadData(file as Blob)
-      .then(() => true)
-      .catch(() => false)
+  static async uploadToAzure(blobName: string, file: File): Promise<string> {
+    const client = this.getBlockBlobClient(blobName)
+
+    return client.uploadData(file as Blob).then(async () => {
+      return client.url
+    })
   }
 
   static async retrieveBlobsFromAzure(): Promise<Blob | undefined> {
