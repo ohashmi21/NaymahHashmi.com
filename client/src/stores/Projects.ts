@@ -11,3 +11,11 @@ export const useProjects = defineStore('projects', () => {
 
   return { projects }
 })
+
+export const useCategories = defineStore('categories', () => {
+  const categories = MockData.projects.map(
+    (projectCategoryModel) => projectCategoryModel.categoryName,
+  )
+
+  return { categories }
+})
