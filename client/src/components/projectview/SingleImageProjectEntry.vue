@@ -4,6 +4,7 @@
       :allow-upload="isAdmin"
       :imgUrl="contentModel.imageUrls[0]"
       :on-image-loaded="onImageUploaded"
+      :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
       class="image-item"
     />
     <div id="project-caption-container">
@@ -20,8 +21,11 @@
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 import EditableText from '../EditableText.vue'
+import FileNameUtilties from '@/utilities/FileNameUtilities'
 
 defineProps<{
+  categoryName: string
+  projectName: string
   contentModel: ProjectContentModel
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void

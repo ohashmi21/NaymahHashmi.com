@@ -24,6 +24,7 @@ import { useTemplateRef } from 'vue'
 const props = defineProps<{
   allowUpload: boolean
   imgUrl: string
+  fileName: string
   onImageLoaded: (arg0: string) => void
 }>()
 
@@ -33,8 +34,19 @@ function onUploadImageClick() {
   uploadButton.value?.click()
 }
 
+function buildFileNameWithExtention(fileNameWithoutExtension: string, extension: string): string {
+  return `${fileNameWithoutExtension}.${extension}`
+}
+
+function getFileExtensionFromFile(file: File): string {
+  // file.type is in format similar to image/png
+  return file.type.split('/')[1]
+}
+
 function handleFileUpload(event: Event) {
-  props.onImageLoaded(ImageUploadHandler.uploadImage(event.target!.files![0]))
+  const file: File = event.target!.files![0]
+  const fileName = buildFileNameWithExtention(props.fileName, getFileExtensionFromFile(file))
+  props.onImageLoaded(ImageUploadHandler.uploadImage(fileName, file))
 }
 </script>
 

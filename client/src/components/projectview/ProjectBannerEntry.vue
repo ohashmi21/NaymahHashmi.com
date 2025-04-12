@@ -5,6 +5,7 @@
         :allow-upload="isAdmin"
         :imgUrl="imgUrl"
         :on-image-loaded="onImageUploaded"
+        :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
         class="image-item"
       />
     </div>
@@ -23,8 +24,11 @@
 <script setup lang="ts">
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 import EditableText from '@/components/EditableText.vue'
+import FileNameUtilties from '@/utilities/FileNameUtilities'
 
 defineProps<{
+  categoryName: string
+  projectName: string
   imgUrl: string
   title: string
   isAdmin: boolean

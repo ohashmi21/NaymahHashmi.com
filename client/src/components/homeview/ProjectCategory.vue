@@ -18,6 +18,7 @@
       <ProjectItem
         v-for="project in props.projectCategory.projects"
         :key="project.projectName"
+        :category-name="props.projectCategory.categoryName"
         :project-name="project.projectName"
         :color="props.projectCategory.colorHash"
         :show="showProjects"
