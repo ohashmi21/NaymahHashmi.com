@@ -46,7 +46,7 @@ function getFileExtensionFromFile(file: File): string {
 function handleFileUpload(event: Event) {
   const file: File = event.target!.files![0]
   const fileName = buildFileNameWithExtention(props.fileName, getFileExtensionFromFile(file))
-  props.onImageLoaded(ImageUploadHandler.uploadImage(fileName, file))
+  ImageUploadHandler.uploadImage(fileName, file).then((url) => props.onImageLoaded(url))
 }
 </script>
 
