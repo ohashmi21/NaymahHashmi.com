@@ -28,3 +28,6 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Hide Azure connection info from repo
+src/utilities/AzureConnectionInfo.ts
