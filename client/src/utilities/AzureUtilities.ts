@@ -65,21 +65,8 @@ export default class AzureUtilities {
     })
   }
 
-  static async retrieveBlobsFromAzure(): Promise<Blob | undefined> {
-    const pipeline = newPipeline(new AnonymousCredential())
-
-    const blobServiceClient = new BlobServiceClient(
-      `https://${AzureConnectionInfo.accountName}.blob.core.windows.net?${this.getSasToken()}`,
-      pipeline,
-    )
-
-    const containerClient = blobServiceClient.getContainerClient(AzureConnectionInfo.containerName)
-    for await (const blob of containerClient.listBlobsFlat()) {
-      const tempBlockBlobClient = containerClient.getBlockBlobClient(blob.name)
-      // Display blob name and URL
-      console.log(`\n\tname: ${blob.name}\n\tURL: ${tempBlockBlobClient.url}\n`)
-      const downloadBlockBlobResponse = await this.getBlockBlobClient(blob.name).download(0)
-      return await downloadBlockBlobResponse.blobBody
-    }
+  static async retrieveBlobFromAzureByFileName(fileName: string): Promise<Blob | undefined> {
+    const downloadResponse = await this.getBlockBlobClient(fileName).download()
+    return await downloadResponse.blobBody
   }
 }

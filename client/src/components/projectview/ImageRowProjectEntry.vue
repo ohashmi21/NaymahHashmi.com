@@ -8,9 +8,9 @@
         v-bind:key="`image-item-${index}`"
       >
         <MediaUploadableImage
-          v-if="index - 1 < props.contentModel.imageUrls.length || isAdmin"
+          v-if="index - 1 < props.contentModel.azureFileName.length || isAdmin"
           :allow-upload="isAdmin && index - 1 == indexOfUploadImageButton"
-          :imgUrl="contentModel.imageUrls[index - 1] ?? ''"
+          :azure-file-name="contentModel.azureFileName[index - 1] ?? ''"
           :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
           :on-image-loaded="onImageUploaded"
         />
@@ -46,7 +46,7 @@ const MAX_ITEM_COUNT = 4
 const indexOfUploadImageButton = ref(-1)
 
 function updateIndexOfUploadImageButton() {
-  indexOfUploadImageButton.value = Math.min(props.contentModel.imageUrls.length, MAX_ITEM_COUNT)
+  indexOfUploadImageButton.value = Math.min(props.contentModel.azureFileName.length, MAX_ITEM_COUNT)
 }
 
 onMounted(() => {

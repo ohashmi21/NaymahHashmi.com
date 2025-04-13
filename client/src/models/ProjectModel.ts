@@ -4,21 +4,21 @@ import UuidUtilities from '@/utilities/UuidUtilities'
 /** Object representing project. */
 export default class ProjectModel {
   uuid: number
-  projectBannerImgUrl: string
+  projectBannerAzureFileName: string
   projectName: string
-  projectTileImagePath: string
+  projectTileImageAzureFileName: string
   projectContent: ProjectContentModel[]
 
   constructor(
-    projectBannerImgUrl: string,
+    projectBannerAzureFileName: string,
     projectName: string,
-    projectTileImagePath: string,
+    projectTileImageAzureFileName: string,
     projectContent: ProjectContentModel[],
   ) {
     this.uuid = UuidUtilities.getId()
-    this.projectBannerImgUrl = projectBannerImgUrl
+    this.projectBannerAzureFileName = projectBannerAzureFileName
     this.projectName = projectName
-    this.projectTileImagePath = projectTileImagePath
+    this.projectTileImageAzureFileName = projectTileImageAzureFileName
     this.projectContent = projectContent
   }
 }

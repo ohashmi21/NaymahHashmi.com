@@ -2,7 +2,7 @@
   <div id="single-image-project-entry-container">
     <MediaUploadableImage
       :allow-upload="isAdmin"
-      :imgUrl="contentModel.imageUrls[0]"
+      :azure-file-name="contentModel.azureFileName[0]"
       :on-image-loaded="onImageUploaded"
       :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
       class="image-item"

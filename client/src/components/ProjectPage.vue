@@ -3,7 +3,7 @@
     <ProjectBannerEntry
       :category-name="categoryName"
       :project-name="projectName"
-      :img-url="project.projectBannerImgUrl"
+      :azure-file-name="project.projectBannerAzureFileName"
       :is-admin="isAdmin"
       :on-image-uploaded="onBannerImageUploaded"
       :on-title-updated="onTitleUpdated"
@@ -75,8 +75,8 @@ const project: ProjectModel = reactive(
     : projectsStore.projects.get(props.projectName!)!,
 )
 
-function onBannerImageUploaded(imgUrl: string) {
-  project.projectBannerImgUrl = imgUrl
+function onBannerImageUploaded(azureFileName: string) {
+  project.projectBannerAzureFileName = azureFileName
 }
 
 function onTitleUpdated(title: string) {
@@ -102,7 +102,7 @@ function showErrorMessage(message: string) {
 
 function projectEntriesAreValid(): boolean {
   for (const entry of project.projectContent) {
-    if (entry.imageUrls.length == 0) {
+    if (entry.azureFileName.length == 0) {
       return false
     }
   }
@@ -110,7 +110,7 @@ function projectEntriesAreValid(): boolean {
 }
 
 function saveProject() {
-  if (project.projectBannerImgUrl.length == 0) {
+  if (project.projectBannerAzureFileName.length == 0) {
     showErrorMessage('Banner Image is empty')
   } else if (!projectEntriesAreValid()) {
     showErrorMessage('Verify all project entries have at least one image added')
