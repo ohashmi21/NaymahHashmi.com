@@ -1,8 +1,8 @@
 <template>
   <nav>
     <ProjectCategory
+      v-for="category in useAllProjectsByCategory().allProjectsByCategory"
       :key="category.categoryName"
-      v-for="category in MockData.projects"
       :projectCategory="category"
     />
   </nav>
@@ -10,7 +10,7 @@
 
 <script setup lang="ts">
 import ProjectCategory from '@/components/homeview/ProjectCategory.vue'
-import MockData from '@/assets/mockdata'
+import { useAllProjectsByCategory } from '@/stores/Projects'
 </script>
 
 <style lang="scss" scoped>
