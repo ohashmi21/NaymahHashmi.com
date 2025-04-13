@@ -69,20 +69,22 @@ function uploadProject(categoryId: string, model: ProjectModel) {
   );
 }
 
-async function getProjectCategories(): Promise<ProjectCategoryModel[]> {
+async function getProjectCategoriesWithProjection(
+  projection: { projection: object } = { projection: {} }
+): Promise<ProjectCategoryModel[]> {
   const categoriesResults: ProjectCategoryModel[] = [];
 
-  const categories = collection.find(
-    {},
-    { projection: { colorHash: false, imgPath: false, projects: false } }
-  );
+  const categories = collection.find({}, projection);
 
   while (await categories.hasNext()) {
     const category = await categories.next();
     categoriesResults.push(
       new ProjectCategoryModel(
         category!._id.toHexString(),
-        category!.categoryName
+        category!.categoryName,
+        category!.colorHash,
+        category!.imgPath,
+        category!.projects
       )
     );
   }
@@ -90,9 +92,20 @@ async function getProjectCategories(): Promise<ProjectCategoryModel[]> {
   return categoriesResults;
 }
 
+async function getProjectCategories(): Promise<ProjectCategoryModel[]> {
+  return getProjectCategoriesWithProjection({
+    projection: { colorHash: false, imgPath: false, projects: false },
+  });
+}
+
+async function getAllProjects(): Promise<ProjectCategoryModel[]> {
+  return getProjectCategoriesWithProjection();
+}
+
 export default {
   connectToDb,
   uploadCategory,
   uploadProject,
   getProjectCategories,
+  getAllProjects,
 };
