@@ -16,8 +16,8 @@
         :is-admin="isAdmin"
       />
     </div>
-    <div id="add-entry-container">
-      <div v-if="isAdmin" id="add-entry-button" :onclick="() => toggleShowAddEntryList()">
+    <div v-if="isAdmin" id="add-entry-container">
+      <div id="add-entry-button" :onclick="() => toggleShowAddEntryList()">
         <p>+</p>
       </div>
       <ul id="add-entry-options-container" v-if="showAddEntryList">
