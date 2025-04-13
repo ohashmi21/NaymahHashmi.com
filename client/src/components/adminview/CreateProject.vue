@@ -3,9 +3,9 @@
     <p id="error-message">{{ errorMessage }}</p>
     <div id="form">
       <label>Category: </label>
-      <select v-model="categoryName">
-        <option v-for="category of categoriesStore.categories" :key="category">
-          {{ category }}
+      <select v-model="category">
+        <option v-for="category of categoriesStore.categories" :key="category.id" :value="category">
+          {{ category.categoryName }}
         </option>
       </select>
       <br />
@@ -22,16 +22,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, type Ref } from 'vue'
 import { useCategories } from '@/stores/Projects'
+import type ProjectCategoryModel from '@/models/ProjectCategoryModel'
 
 const props = defineProps<{
-  onProjectCreated: (categoryName: string, projectName: string) => void
+  onProjectCreated: (selectedCategory: ProjectCategoryModel, projectName: string) => void
 }>()
 
 const categoriesStore = useCategories()
 
-const categoryName = ref('')
+const category: Ref<ProjectCategoryModel | null> = ref(null)
 const projectName = ref('')
 const errorMessage = ref('')
 
@@ -40,12 +41,12 @@ function displayErrorMessage(missingField: string) {
 }
 
 function onSubmit() {
-  if (categoryName.value.length == 0) {
+  if (category.value == null) {
     displayErrorMessage('category')
   } else if (projectName.value.length == 0) {
     displayErrorMessage('project')
   } else {
-    props.onProjectCreated(categoryName.value, projectName.value.trim())
+    props.onProjectCreated(category.value!, projectName.value.trim())
   }
 }
 

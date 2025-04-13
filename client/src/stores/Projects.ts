@@ -1,4 +1,5 @@
 import MockData from '@/assets/mockdata'
+import ProjectCategoryModel from '@/models/ProjectCategoryModel'
 import ProjectModel from '@/models/ProjectModel'
 import { defineStore } from 'pinia'
 
@@ -13,9 +14,7 @@ export const useProjects = defineStore('projects', () => {
 })
 
 export const useCategories = defineStore('categories', () => {
-  const categories = MockData.projects.map(
-    (projectCategoryModel) => projectCategoryModel.categoryName,
-  )
+  const categories: ProjectCategoryModel[] = []
 
   return { categories }
 })
