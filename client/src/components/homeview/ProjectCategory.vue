@@ -38,9 +38,9 @@ const root = useTemplateRef('root')
 const showProjects = ref(false)
 
 onMounted(() => {
-  root.value.style.setProperty('--background-color', props.projectCategory.colorHash + '40')
-  root.value.style.setProperty('--dotted-color', props.projectCategory.colorHash + 'DD')
-  root.value.style.setProperty('--text-color', props.projectCategory.colorHash)
+  root.value?.style.setProperty('--background-color', props.projectCategory.colorHash + '40')
+  root.value?.style.setProperty('--dotted-color', props.projectCategory.colorHash + 'DD')
+  root.value?.style.setProperty('--text-color', props.projectCategory.colorHash)
 })
 </script>
 

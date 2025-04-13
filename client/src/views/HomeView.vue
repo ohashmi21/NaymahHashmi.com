@@ -18,7 +18,7 @@ import ProjectCategories from '@/components/homeview/ProjectCategories.vue'
 const resume = useTemplateRef('resume')
 
 function scrollToResume() {
-  window.scrollTo(0, resume.value.offsetTop)
+  window.scrollTo(0, resume.value?.offsetTop ?? 0)
 }
 </script>
 
