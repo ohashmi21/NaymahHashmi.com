@@ -3,7 +3,7 @@
     <div id="image-container">
       <MediaUploadableImage
         :allow-upload="isAdmin"
-        :imgUrl="props.contentModel.imageUrls[0]"
+        :azure-file-name="props.contentModel.azureFileName[0]"
         :on-image-loaded="onImageUploaded"
         :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
         class="image-item"

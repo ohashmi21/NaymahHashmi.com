@@ -6,7 +6,7 @@
       :project-name="projectName"
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
-      :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
+      :on-image-uploaded="(azureFileName) => onImageUploaded(azureFileName)"
       :on-caption-updated="onCaptionUpdated"
     />
     <SingleImageProjectEntry
@@ -15,7 +15,7 @@
       :project-name="projectName"
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
-      :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
+      :on-image-uploaded="(azureFileName) => onImageUploaded(azureFileName)"
       :on-caption-updated="onCaptionUpdated"
     />
     <LongImageProjectEntry
@@ -24,7 +24,7 @@
       :project-name="projectName"
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
-      :on-image-uploaded="(imgUrl) => onImageUploaded(imgUrl)"
+      :on-image-uploaded="(azureFileName) => onImageUploaded(azureFileName)"
       :on-caption-updated="onCaptionUpdated"
     />
   </div>
@@ -46,8 +46,8 @@ const props = defineProps<{
 }>()
 const reactiveEntry = reactive({ entry: props.projectEntry })
 
-function onImageUploaded(imgUrl: string) {
-  reactiveEntry.entry.imageUrls = [...reactiveEntry.entry.imageUrls, imgUrl]
+function onImageUploaded(azureFileName: string) {
+  reactiveEntry.entry.azureFileName = [...reactiveEntry.entry.azureFileName, azureFileName]
 }
 
 function onCaptionUpdated(caption: string) {

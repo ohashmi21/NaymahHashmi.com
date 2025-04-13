@@ -3,7 +3,7 @@
     <div id="banner-container">
       <MediaUploadableImage
         :allow-upload="isAdmin"
-        :imgUrl="imgUrl"
+        :azure-file-name="azureFileName"
         :on-image-loaded="onImageUploaded"
         :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
         class="image-item"
@@ -29,7 +29,7 @@ import FileNameUtilties from '@/utilities/FileNameUtilities'
 defineProps<{
   categoryName: string
   projectName: string
-  imgUrl: string
+  azureFileName: string
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
   onTitleUpdated: (arg0: string) => void

@@ -4,22 +4,22 @@ import ProjectContentModel from "./ProjectContentModel";
 /** Object representing project. */
 export default class ProjectModel {
   uuid: ObjectId | null;
-  projectBannerImgUrl: string;
+  projectBannerAzureFileName: string;
   projectName: string;
-  projectTileImagePath: string;
+  projectTileImageAzureFileName: string;
   projectContent: ProjectContentModel[];
 
   constructor(
-    projectBannerImgUrl: string,
+    projectBannerAzureFileName: string,
     projectName: string,
-    projectTileImagePath: string,
+    projectTileImageAzureFileName: string,
     projectContent: ProjectContentModel[],
     uuid: ObjectId | null = null
   ) {
     this.uuid = uuid;
-    this.projectBannerImgUrl = projectBannerImgUrl;
+    this.projectBannerAzureFileName = projectBannerAzureFileName;
     this.projectName = projectName;
-    this.projectTileImagePath = projectTileImagePath;
+    this.projectTileImageAzureFileName = projectTileImageAzureFileName;
     this.projectContent = projectContent;
   }
 }

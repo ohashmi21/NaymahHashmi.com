@@ -1,6 +1,6 @@
 <template>
   <div id="media-upload-image-container">
-    <img v-if="imgUrl" :src="imgUrl" />
+    <img v-if="localImgUrl" :src="localImgUrl" />
     <div id="image-upload-input-container" v-else-if="allowUpload">
       <button id="image-upload-input-container-button" :onclick="onUploadImageClick">
         <p>+</p>
@@ -18,17 +18,30 @@
 </template>
 
 <script setup lang="ts">
+import AzureUtilities from '@/utilities/AzureUtilities'
 import ImageUploadHandler from '@/utilities/ImageUploadHandler'
-import { useTemplateRef } from 'vue'
+import { useTemplateRef, ref, onMounted } from 'vue'
 
 const props = defineProps<{
   allowUpload: boolean
-  imgUrl: string
-  fileName: string
-  onImageLoaded: (arg0: string) => void
+  azureFileName: string // Used to load image from Azure
+  fileName: string // Used to name file if uploading to Azure
+  onImageLoaded: (azureFileName: string) => void
 }>()
 
 const uploadButton = useTemplateRef('upload-button')
+
+const localImgUrl = ref('')
+
+onMounted(() => {
+  if (!props.azureFileName) return
+
+  AzureUtilities.retrieveBlobFromAzureByFileName(props.azureFileName).then((res) => {
+    if (!!res) {
+      localImgUrl.value = URL.createObjectURL(res)
+    }
+  })
+})
 
 function onUploadImageClick() {
   uploadButton.value?.click()
@@ -46,7 +59,10 @@ function getFileExtensionFromFile(file: File): string {
 function handleFileUpload(event: Event) {
   const file: File = event.target!.files![0]
   const fileName = buildFileNameWithExtention(props.fileName, getFileExtensionFromFile(file))
-  ImageUploadHandler.uploadImage(fileName, file).then((url) => props.onImageLoaded(url))
+  ImageUploadHandler.uploadImage(fileName, file).then(() => {
+    localImgUrl.value = URL.createObjectURL(file)
+    props.onImageLoaded(fileName)
+  })
 }
 </script>
 
