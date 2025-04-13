@@ -29,3 +29,7 @@ app.post("/project", (req: Request, res: Response) => {
 app.get("/project-categories", (req: Request, res: Response) => {
   dbService.getProjectCategories().then((categories) => res.send(categories));
 });
+
+app.get("/all-projects", (req: Request, res: Response) => {
+  dbService.getAllProjects().then((categories) => res.send(categories));
+});
