@@ -4,7 +4,6 @@
       :category-name="categoryName"
       :project-name="projectName"
       :img-url="project.projectBannerImgUrl"
-      :title="project.projectName"
       :is-admin="isAdmin"
       :on-image-uploaded="onBannerImageUploaded"
       :on-title-updated="onTitleUpdated"
@@ -26,6 +25,11 @@
           {{ action }}
         </li>
       </ul>
+      <br />
+      <br />
+      <br />
+      <p id="error-message">{{ errorMessage }}</p>
+      <button id="save-project" @click="saveProject">Save Project</button>
     </div>
   </div>
 </template>
@@ -40,8 +44,14 @@ import ProjectBannerEntry from '@/components/projectview/ProjectBannerEntry.vue'
 import ProjectContentModel from '@/models/ProjectContentModel'
 import { ProjectEntryType } from '@/models/ProjectEntryType'
 import { ref } from 'vue'
+import ProjectsService from '@/services/ProjectsService'
 
-const props = defineProps<{ categoryName: string; projectName: string; isAdmin: boolean }>()
+const props = defineProps<{
+  categoryId: string
+  categoryName: string
+  projectName: string
+  isAdmin: boolean
+}>()
 
 const router = useRouter()
 const projectsStore = useProjects()
@@ -53,6 +63,7 @@ const supportedActions: ProjectEntryType[] = [
 ]
 
 const showAddEntryList = ref(false)
+const errorMessage = ref('')
 
 if (!projectExists(props.projectName) && !props.isAdmin) {
   router.replace({ name: 'home' })
@@ -60,7 +71,7 @@ if (!projectExists(props.projectName) && !props.isAdmin) {
 
 const project: ProjectModel = reactive(
   props.isAdmin
-    ? new ProjectModel('', '', '', [])
+    ? new ProjectModel('', props.projectName, '', [])
     : projectsStore.projects.get(props.projectName!)!,
 )
 
@@ -83,6 +94,30 @@ function addEntry(entryType: ProjectEntryType) {
 
 function toggleShowAddEntryList() {
   showAddEntryList.value = !showAddEntryList.value
+}
+
+function showErrorMessage(message: string) {
+  errorMessage.value = message
+}
+
+function projectEntriesAreValid(): boolean {
+  for (const entry of project.projectContent) {
+    if (entry.imageUrls.length == 0) {
+      return false
+    }
+  }
+  return true
+}
+
+function saveProject() {
+  if (project.projectBannerImgUrl.length == 0) {
+    showErrorMessage('Banner Image is empty')
+  } else if (!projectEntriesAreValid()) {
+    showErrorMessage('Verify all project entries have at least one image added')
+  } else {
+    showErrorMessage('')
+    ProjectsService.uploadProject(props.categoryId, JSON.parse(JSON.stringify(project)))
+  }
 }
 </script>
 
@@ -134,6 +169,10 @@ function toggleShowAddEntryList() {
           cursor: pointer;
         }
       }
+    }
+
+    #error-message {
+      color: red;
     }
   }
 }

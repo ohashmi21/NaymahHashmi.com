@@ -3,7 +3,7 @@ import ProjectModel from './ProjectModel'
 
 /** Object representing project category. */
 export default class ProjectCategoryModel {
-  id: string
+  uuid: string
   colorHash: string
   categoryName: string
   imgPath: string
@@ -14,9 +14,9 @@ export default class ProjectCategoryModel {
     categoryName: string,
     imgPath: string,
     projects: ProjectModel[],
-    id: string = UuidUtilities.getIdString(),
+    uuid: string = UuidUtilities.getIdString(),
   ) {
-    this.id = id
+    this.uuid = uuid
     this.colorHash = colorHash
     this.categoryName = categoryName
     this.imgPath = imgPath

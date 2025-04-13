@@ -1,7 +1,8 @@
 <template>
   <div>
     <ProjectPage
-      v-if="!!categoryName && !!projectName"
+      v-if="!!categoryId && !!categoryName && !!projectName"
+      :category-id="categoryId"
       :category-name="categoryName"
       :projectName="projectName"
       :is-admin="true"
@@ -16,10 +17,12 @@ import CreateProject from '@/components/adminview/CreateProject.vue'
 import ProjectPage from '@/components/ProjectPage.vue'
 import type ProjectCategoryModel from '@/models/ProjectCategoryModel'
 
+const categoryId: Ref<string | null> = ref(null)
 const categoryName: Ref<string | null> = ref(null)
 const projectName: Ref<string | null> = ref(null)
 
 function onProjectCreated(category: ProjectCategoryModel, project: string) {
+  categoryId.value = category.uuid
   categoryName.value = category.categoryName
   projectName.value = project
 }

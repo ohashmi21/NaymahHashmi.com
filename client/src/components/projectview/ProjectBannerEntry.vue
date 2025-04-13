@@ -11,7 +11,7 @@
     </div>
     <div id="project-title-container">
       <EditableText
-        :value="title"
+        :value="projectName"
         :is-admin="isAdmin"
         font-size="24px"
         font-weight="bold"
@@ -30,7 +30,6 @@ defineProps<{
   categoryName: string
   projectName: string
   imgUrl: string
-  title: string
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
   onTitleUpdated: (arg0: string) => void
