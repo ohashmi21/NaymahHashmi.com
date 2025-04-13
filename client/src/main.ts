@@ -32,6 +32,4 @@ ProjectsService.getProjects().then((res: ProjectCategoryModel[]) => {
   })
 
   allProjectsByCategoryStore.allProjectsByCategory = res
-
-  console.log(res)
 })
