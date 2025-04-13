@@ -9,4 +9,9 @@ export default class UuidUtilities {
   static getId(): number {
     return UuidUtilities.id++
   }
+
+  /** Wrapper call around {@link getId} that converts the number into a string */
+  static getIdString(): string {
+    return `${this.getId()}`
+  }
 }

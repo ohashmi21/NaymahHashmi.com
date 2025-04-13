@@ -14,12 +14,13 @@
 import { ref, type Ref } from 'vue'
 import CreateProject from '@/components/adminview/CreateProject.vue'
 import ProjectPage from '@/components/ProjectPage.vue'
+import type ProjectCategoryModel from '@/models/ProjectCategoryModel'
 
 const categoryName: Ref<string | null> = ref(null)
 const projectName: Ref<string | null> = ref(null)
 
-function onProjectCreated(category: string, project: string) {
-  categoryName.value = category
+function onProjectCreated(category: ProjectCategoryModel, project: string) {
+  categoryName.value = category.categoryName
   projectName.value = project
 }
 </script>
