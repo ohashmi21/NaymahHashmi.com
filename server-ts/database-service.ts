@@ -78,7 +78,13 @@ async function getProjectCategories(): Promise<ProjectCategoryModel[]> {
   );
 
   while (await categories.hasNext()) {
-    categoriesResults.push((await categories.next()) as ProjectCategoryModel);
+    const category = await categories.next();
+    categoriesResults.push(
+      new ProjectCategoryModel(
+        category!._id.toHexString(),
+        category!.categoryName
+      )
+    );
   }
 
   return categoriesResults;

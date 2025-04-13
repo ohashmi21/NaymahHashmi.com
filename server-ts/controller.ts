@@ -1,9 +1,11 @@
 import express, { Request, Response } from "express";
 import dbService from "./database-service";
 import ProjectModel from "./models/ProjectModel";
+import cors from "cors";
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 
 const port = 3333;
@@ -19,7 +21,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.post("/project", (req: Request, res: Response) => {
   const projectCategoryId = req.body.projectCategory as string;
-  const projectModel = req.body.projectCategory as ProjectModel;
+  const projectModel = req.body.projectModel as ProjectModel;
   dbService.uploadProject(projectCategoryId, projectModel);
   res.send();
 });

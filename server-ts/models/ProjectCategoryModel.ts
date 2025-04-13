@@ -3,18 +3,18 @@ import ProjectModel from "./ProjectModel";
 
 /** Object representing project category. */
 export default class ProjectCategoryModel {
-  uuid: ObjectId | null;
+  uuid: string | null;
   colorHash: string;
   categoryName: string;
   imgPath: string;
   projects: ProjectModel[];
 
   constructor(
-    colorHash: string,
+    uuid: string,
     categoryName: string,
-    imgPath: string,
-    projects: ProjectModel[],
-    uuid: ObjectId | null = null
+    colorHash: string = "",
+    imgPath: string = "",
+    projects: ProjectModel[] = []
   ) {
     this.uuid = uuid;
     this.colorHash = colorHash;
