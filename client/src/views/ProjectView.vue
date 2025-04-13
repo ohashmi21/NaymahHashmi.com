@@ -1,6 +1,11 @@
 <template>
   <div id="project-view-container">
-    <ProjectPage :category-name="categoryName!" :project-name="projectName!" :is-admin="false" />
+    <ProjectPage
+      category-id=""
+      :category-name="categoryName!"
+      :project-name="projectName!"
+      :is-admin="false"
+    />
   </div>
 </template>
 

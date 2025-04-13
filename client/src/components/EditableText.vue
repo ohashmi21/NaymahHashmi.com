@@ -29,8 +29,6 @@ const root = ref<HTMLElement | null>(null)
 const inputValue = ref('')
 
 onMounted(() => {
-  console.log(props.fontSize)
-  console.log(props.fontWeight)
   root.value?.style.setProperty('--font-size', props.fontSize)
   root.value?.style.setProperty('--font-weight', props.fontWeight)
 })

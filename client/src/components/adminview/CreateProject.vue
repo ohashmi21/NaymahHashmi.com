@@ -4,7 +4,11 @@
     <div id="form">
       <label>Category: </label>
       <select v-model="category">
-        <option v-for="category of categoriesStore.categories" :key="category.id" :value="category">
+        <option
+          v-for="category of categoriesStore.categories"
+          :key="category.uuid"
+          :value="category"
+        >
           {{ category.categoryName }}
         </option>
       </select>
@@ -46,11 +50,9 @@ function onSubmit() {
   } else if (projectName.value.length == 0) {
     displayErrorMessage('project')
   } else {
-    props.onProjectCreated(category.value!, projectName.value.trim())
+    props.onProjectCreated(JSON.parse(JSON.stringify(category.value!)), projectName.value.trim())
   }
 }
-
-console.log(categoriesStore)
 </script>
 
 <style lang="scss" scoped>
