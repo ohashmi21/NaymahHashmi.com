@@ -98,7 +98,7 @@ function projectExists(projectName: string | undefined): boolean {
 
 function addEntry(entryType: ProjectEntryType) {
   toggleShowAddEntryList()
-  project.projectContent.push(new ProjectContentModel(entryType, '', []))
+  project.projectContent.push(new ProjectContentModel(entryType, '', '', []))
 }
 
 function toggleShowAddEntryList() {

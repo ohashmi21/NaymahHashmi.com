@@ -8,10 +8,11 @@
       class="image-item"
     />
     <div id="project-caption-container">
-      <EditableText
-        :value="contentModel.title"
+      <TitleAndCaption
+        :content-model="contentModel"
         :is-admin="isAdmin"
-        :on-text-updated="onCaptionUpdated"
+        :on-title-updated="onTitleUpdated"
+        :on-caption-updated="onCaptionUpdated"
       />
     </div>
   </div>
@@ -20,7 +21,7 @@
 <script setup lang="ts">
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
-import EditableText from '../EditableText.vue'
+import TitleAndCaption from '../TitleAndCaption.vue'
 import FileNameUtilties from '@/utilities/FileNameUtilities'
 
 defineProps<{
@@ -29,6 +30,7 @@ defineProps<{
   contentModel: ProjectContentModel
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
+  onTitleUpdated: (arg0: string) => void
   onCaptionUpdated: (arg0: string) => void
 }>()
 </script>

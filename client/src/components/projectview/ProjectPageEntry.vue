@@ -7,6 +7,7 @@
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
       :on-image-uploaded="(azureFileName) => onImageUploaded(azureFileName)"
+      :on-title-updated="onTitleUpdated"
       :on-caption-updated="onCaptionUpdated"
     />
     <SingleImageProjectEntry
@@ -16,6 +17,7 @@
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
       :on-image-uploaded="(azureFileName) => onImageUploaded(azureFileName)"
+      :on-title-updated="onTitleUpdated"
       :on-caption-updated="onCaptionUpdated"
     />
     <LongImageProjectEntry
@@ -25,6 +27,7 @@
       :content-model="reactiveEntry.entry"
       :is-admin="isAdmin"
       :on-image-uploaded="(azureFileName) => onImageUploaded(azureFileName)"
+      :on-title-updated="onTitleUpdated"
       :on-caption-updated="onCaptionUpdated"
     />
   </div>
@@ -51,8 +54,12 @@ function onImageUploaded(azureFileName: string) {
   reactiveEntry.entry.azureFileName = [...reactiveEntry.entry.azureFileName, azureFileName]
 }
 
+function onTitleUpdated(title: string) {
+  reactiveEntry.entry.title = title
+}
+
 function onCaptionUpdated(caption: string) {
-  reactiveEntry.entry.title = caption
+  reactiveEntry.entry.caption = caption
 }
 </script>
 

@@ -6,17 +6,20 @@ export default class ProjectContentModel {
   uuid: ObjectId | null;
   entryType: ProjectEntryType;
   title: string;
+  caption: string;
   azureFileName: string[];
 
   constructor(
     entryType: ProjectEntryType,
     title: string,
+    caption: string,
     azureFileName: string[],
     uuid: ObjectId | null = null
   ) {
     this.uuid = uuid;
     this.entryType = entryType;
     this.title = title;
+    this.caption = caption;
     this.azureFileName = azureFileName;
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div ref="root" id="editable-text-container">
-    <p v-if="value.length > 0 || !isAdmin" id="title">{{ value }}</p>
+    <p v-if="value.length > 0 || !isAdmin" id="text">{{ value }}</p>
     <div v-else id="edit-text-container">
       <textarea v-model="inputValue" type="text"></textarea>
       <button id="update-text-button" @click="onButtonClick">Update</button>

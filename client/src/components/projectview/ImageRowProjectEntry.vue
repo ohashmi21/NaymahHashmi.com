@@ -17,10 +17,11 @@
       </div>
     </div>
     <div id="project-caption-container">
-      <EditableText
-        :value="contentModel.title"
+      <TitleAndCaption
+        :content-model="contentModel"
         :is-admin="isAdmin"
-        :on-text-updated="onCaptionUpdated"
+        :on-title-updated="onTitleUpdated"
+        :on-caption-updated="onCaptionUpdated"
       />
     </div>
   </div>
@@ -30,7 +31,7 @@
 import type ProjectContentModel from '@/models/ProjectContentModel'
 import MediaUploadableImage from '@/components/MediaUploadableImage.vue'
 import { onMounted, onUpdated, ref } from 'vue'
-import EditableText from '../EditableText.vue'
+import TitleAndCaption from '../TitleAndCaption.vue'
 import FileNameUtilties from '@/utilities/FileNameUtilities'
 
 const props = defineProps<{
@@ -39,6 +40,7 @@ const props = defineProps<{
   contentModel: ProjectContentModel
   isAdmin: boolean
   onImageUploaded: (arg0: string) => void
+  onTitleUpdated: (arg0: string) => void
   onCaptionUpdated: (arg0: string) => void
 }>()
 const MAX_ITEM_COUNT = 4

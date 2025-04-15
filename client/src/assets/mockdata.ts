@@ -8,26 +8,28 @@ export default class MockData {
   static mockImageUrl = 'https://static.thenounproject.com/png/526867-200.png'
 
   static projectContent = [
-    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 1', [
+    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 1', '', [
       MockData.mockImageUrl,
       MockData.mockImageUrl,
       MockData.mockImageUrl,
     ]),
-    new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 1', [
+    new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 1', '', [
       MockData.mockImageUrl,
     ]),
-    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 2', [
-      MockData.mockImageUrl,
-      MockData.mockImageUrl,
-    ]),
-    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 3', [
-      MockData.mockImageUrl,
-      MockData.mockImageUrl,
+    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 2', '', [
       MockData.mockImageUrl,
       MockData.mockImageUrl,
     ]),
-    new ProjectContentModel(ProjectEntryType.LONG_IMAGE, 'Long Row title', [MockData.mockImageUrl]),
-    new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 2', [
+    new ProjectContentModel(ProjectEntryType.IMAGE_ROW, 'Image Row title 3', '', [
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+      MockData.mockImageUrl,
+    ]),
+    new ProjectContentModel(ProjectEntryType.LONG_IMAGE, 'Long Row title', '', [
+      MockData.mockImageUrl,
+    ]),
+    new ProjectContentModel(ProjectEntryType.SINGLE_IMAGE, 'Single Image 2', '', [
       MockData.mockImageUrl,
     ]),
   ]
