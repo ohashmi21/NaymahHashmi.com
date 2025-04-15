@@ -126,7 +126,21 @@ function saveProject() {
   } else {
     showErrorMessage('')
     ProjectsService.uploadProject(props.categoryId, JSON.parse(JSON.stringify(project)))
+    addProjectToStore()
+    switchToPublishedMode()
   }
+}
+
+function addProjectToStore() {
+  const projects = projectsStore.projects
+  projects.set(project.projectName, project)
+  projectsStore.projects = projects
+}
+
+function switchToPublishedMode() {
+  const categoryName = props.categoryName
+  const projectName = props.projectName
+  router.replace({ name: 'project', query: { categoryName, projectName } })
 }
 
 function onHomeLinkClicked() {
