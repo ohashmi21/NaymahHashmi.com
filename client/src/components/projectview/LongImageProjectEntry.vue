@@ -37,13 +37,17 @@ const props = defineProps<{
 
 <style lang="scss" scoped>
 #long-image-project-entry-container {
-  border: 1px solid black;
+  border: var(--image-border-width) dashed black;
   width: 100%;
   margin-bottom: 50px;
 
   #image-container {
     width: 100%;
     height: 200px;
+  }
+
+  #project-caption-container {
+    margin-top: 15px;
   }
 }
 </style>

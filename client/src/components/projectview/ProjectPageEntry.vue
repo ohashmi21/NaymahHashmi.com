@@ -44,6 +44,7 @@ const props = defineProps<{
   projectEntry: ProjectContentModel
   isAdmin: boolean
 }>()
+
 const reactiveEntry = reactive({ entry: props.projectEntry })
 
 function onImageUploaded(azureFileName: string) {

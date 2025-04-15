@@ -4,7 +4,7 @@
       <!-- v-for is not 0-indexed; starts with index 1 -->
       <div
         class="single-image-container"
-        v-for="index in MAX_ITEM_COUNT"
+        v-for="index in Math.min(itemsToShow, MAX_ITEM_COUNT)"
         v-bind:key="`image-item-${index}`"
       >
         <MediaUploadableImage
@@ -44,9 +44,18 @@ const props = defineProps<{
 const MAX_ITEM_COUNT = 4
 
 const indexOfUploadImageButton = ref(-1)
+const itemsToShow = ref(0)
 
 function updateIndexOfUploadImageButton() {
-  indexOfUploadImageButton.value = Math.min(props.contentModel.azureFileName.length, MAX_ITEM_COUNT)
+  if (props.isAdmin) {
+    indexOfUploadImageButton.value = Math.min(
+      props.contentModel.azureFileName.length,
+      MAX_ITEM_COUNT,
+    )
+    itemsToShow.value = indexOfUploadImageButton.value + 1
+  } else {
+    itemsToShow.value = props.contentModel.azureFileName.length
+  }
 }
 
 onMounted(() => {
@@ -63,14 +72,19 @@ onUpdated(() => {
   margin-bottom: 50px;
 
   #images-container {
-    border: 1px solid black;
+    border: var(--image-border-width) dashed black;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
 
     .single-image-container {
-      width: 25%;
+      flex-grow: 1;
+      padding: 15px;
     }
+  }
+
+  #project-caption-container {
+    margin-top: 15px;
   }
 }
 </style>

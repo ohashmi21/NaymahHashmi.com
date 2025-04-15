@@ -9,6 +9,7 @@
         }
       "
     ></div>
+    <p id="project-name">{{ props.projectName }}</p>
   </div>
 </template>
 
@@ -77,6 +78,11 @@ onUpdated(() => {
     &:hover {
       cursor: pointer;
     }
+  }
+
+  #project-name {
+    text-align: center;
+    color: var(--color);
   }
 }
 

@@ -20,16 +20,18 @@ const categoriesStore = useCategories()
 const projectsStore = useProjects()
 const allProjectsByCategoryStore = useAllProjectsByCategory()
 
-CategoriesService.getCategories().then((res) => (categoriesStore.categories = res))
+CategoriesService.getCategories().then((res) => {
+  categoriesStore.categories = res
+})
 
 ProjectsService.getProjects().then((res: ProjectCategoryModel[]) => {
+  const processedProjects: Map<string, ProjectModel> = new Map()
   res.forEach((category: ProjectCategoryModel) => {
     category.projects.forEach((project) => {
-      const processedProjects: Map<string, ProjectModel> = new Map()
       processedProjects.set(project.projectName, project)
-      projectsStore.projects = processedProjects
     })
   })
 
+  projectsStore.projects = processedProjects
   allProjectsByCategoryStore.allProjectsByCategory = res
 })

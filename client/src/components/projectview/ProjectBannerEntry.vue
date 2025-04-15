@@ -1,14 +1,5 @@
 <template>
   <div id="project-banner-entry-container">
-    <div id="banner-container">
-      <MediaUploadableImage
-        :allow-upload="isAdmin"
-        :azure-file-name="azureFileName"
-        :on-image-loaded="onImageUploaded"
-        :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
-        class="image-item"
-      />
-    </div>
     <div id="project-title-container">
       <EditableText
         :value="projectName"
@@ -16,6 +7,15 @@
         font-size="24px"
         font-weight="bold"
         :on-text-updated="onTitleUpdated"
+      />
+    </div>
+    <div id="banner-container">
+      <MediaUploadableImage
+        :allow-upload="isAdmin"
+        :azure-file-name="azureFileName"
+        :on-image-loaded="onImageUploaded"
+        :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
+        class="image-item"
       />
     </div>
   </div>
@@ -41,14 +41,14 @@ defineProps<{
   margin-bottom: 50px;
 
   #banner-container {
-    border: 1px solid black;
+    border: var(--image-border-width) dashed black;
     width: 100%;
     height: 250px;
   }
 
   #project-title-container {
     width: 100%;
-    margin-top: 15px;
+    margin-bottom: 15px;
   }
 }
 </style>

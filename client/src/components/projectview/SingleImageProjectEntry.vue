@@ -36,12 +36,17 @@ defineProps<{
 <style lang="scss" scoped>
 #single-image-project-entry-container {
   margin-bottom: 50px;
-  border: 1px solid black;
+  border: var(--image-border-width) dashed black;
   display: flex;
   flex-direction: row;
 
   .image-item {
     width: 70%;
+  }
+
+  #project-caption-container {
+    margin-left: 15px;
+    width: 30%;
   }
 }
 </style>

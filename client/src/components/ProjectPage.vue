@@ -1,5 +1,5 @@
 <template>
-  <div id="project-view-container">
+  <div ref="root" id="project-view-container">
     <ProjectBannerEntry
       :category-name="categoryName"
       :project-name="projectName"
@@ -31,11 +31,15 @@
       <p id="error-message">{{ errorMessage }}</p>
       <button id="save-project" @click="saveProject">Save Project</button>
     </div>
+    <button id="home-link" @click="onHomeLinkClicked()">
+      <p>Go Home</p>
+      <p>&#9660;</p>
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, onMounted, ref, useTemplateRef } from 'vue'
 import ProjectPageEntry from '@/components/projectview/ProjectPageEntry.vue'
 import { useRouter } from 'vue-router'
 import ProjectModel from '@/models/ProjectModel'
@@ -43,7 +47,6 @@ import { useProjects } from '@/stores/Projects'
 import ProjectBannerEntry from '@/components/projectview/ProjectBannerEntry.vue'
 import ProjectContentModel from '@/models/ProjectContentModel'
 import { ProjectEntryType } from '@/models/ProjectEntryType'
-import { ref } from 'vue'
 import ProjectsService from '@/services/ProjectsService'
 
 const props = defineProps<{
@@ -52,6 +55,8 @@ const props = defineProps<{
   projectName: string
   isAdmin: boolean
 }>()
+
+const root = useTemplateRef('root')
 
 const router = useRouter()
 const projectsStore = useProjects()
@@ -74,6 +79,10 @@ const project: ProjectModel = reactive(
     ? new ProjectModel('', props.projectName, '', [])
     : projectsStore.projects.get(props.projectName!)!,
 )
+
+onMounted(() => {
+  root.value?.style.setProperty('--image-border-width', props.isAdmin ? '1px' : '0px')
+})
 
 function onBannerImageUploaded(azureFileName: string) {
   project.projectBannerAzureFileName = azureFileName
@@ -119,11 +128,22 @@ function saveProject() {
     ProjectsService.uploadProject(props.categoryId, JSON.parse(JSON.stringify(project)))
   }
 }
+
+function onHomeLinkClicked() {
+  router.replace({ name: 'home' })
+}
 </script>
 
 <style lang="scss" scoped>
 #project-view-container {
+  margin-top: 125px;
   width: 1000px;
+
+  #home-link {
+    position: absolute;
+    left: 0;
+    transform: rotateX('90deg');
+  }
 
   #add-entry-container {
     position: relative;
