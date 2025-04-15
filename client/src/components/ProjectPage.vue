@@ -31,10 +31,10 @@
       <p id="error-message">{{ errorMessage }}</p>
       <button id="save-project" @click="saveProject">Save Project</button>
     </div>
-    <button id="home-link" @click="onHomeLinkClicked()">
+    <div id="home-link" @click="onHomeLinkClicked()">
       <p>Go Home</p>
       <p>&#9660;</p>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -140,9 +140,21 @@ function onHomeLinkClicked() {
   width: 1000px;
 
   #home-link {
-    position: absolute;
-    left: 0;
-    transform: rotateX('90deg');
+    cursor: pointer;
+    text-align: center;
+    position: fixed;
+    left: 0%;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    color: grey;
+
+    p {
+      margin: 0;
+
+      & + p {
+        margin-top: 10px;
+      }
+    }
   }
 
   #add-entry-container {
