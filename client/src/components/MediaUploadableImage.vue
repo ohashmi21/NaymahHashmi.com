@@ -57,7 +57,7 @@ function getFileExtensionFromFile(file: File): string {
 }
 
 function handleFileUpload(event: Event) {
-  const file: File = event.target!.files![0]
+  const file: File = (event.target! as HTMLInputElement).files![0]
   const fileName = buildFileNameWithExtention(props.fileName, getFileExtensionFromFile(file))
   ImageUploadHandler.uploadImage(fileName, file).then(() => {
     localImgUrl.value = URL.createObjectURL(file)
