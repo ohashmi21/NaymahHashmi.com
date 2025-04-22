@@ -53,6 +53,7 @@ const props = defineProps<{
   categoryId: string
   categoryName: string
   projectName: string
+  homePageTileImage: string
   isAdmin: boolean
 }>()
 
@@ -76,7 +77,7 @@ if (!projectExists(props.projectName) && !props.isAdmin) {
 
 const project: ProjectModel = reactive(
   props.isAdmin
-    ? new ProjectModel('', props.projectName, '', [])
+    ? new ProjectModel('', props.projectName, props.homePageTileImage, [])
     : projectsStore.projects.get(props.projectName!)!,
 )
 

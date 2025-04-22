@@ -94,7 +94,7 @@ async function getProjectCategoriesWithProjection(
 
 async function getProjectCategories(): Promise<ProjectCategoryModel[]> {
   return getProjectCategoriesWithProjection({
-    projection: { colorHash: false, imgPath: false, projects: false },
+    projection: { imgPath: false, projects: false },
   });
 }
 

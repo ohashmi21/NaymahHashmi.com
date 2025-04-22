@@ -20,6 +20,7 @@
         :key="project.projectName"
         :category-name="props.projectCategory.categoryName"
         :project-name="project.projectName"
+        :tile-image-azure-name="project.projectTileImageAzureFileName"
         :color="props.projectCategory.colorHash"
         :show="showProjects"
       />

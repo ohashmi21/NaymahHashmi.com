@@ -4,6 +4,7 @@
       category-id=""
       :category-name="categoryName!"
       :project-name="projectName!"
+      home-page-tile-image=""
       :is-admin="false"
     />
   </div>

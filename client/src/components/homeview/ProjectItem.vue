@@ -8,7 +8,15 @@
           router.replace({ name: 'project', query: { categoryName, projectName } })
         }
       "
-    ></div>
+    >
+      <MediaUploadableImage
+        :allow-upload="false"
+        :azure-file-name="tileImageAzureName"
+        :on-image-loaded="() => {}"
+        :file-name="FileNameUtilties.generateBlobName(categoryName, projectName)"
+        class="image-item"
+      />
+    </div>
     <p id="project-name">{{ props.projectName }}</p>
   </div>
 </template>
@@ -16,10 +24,13 @@
 <script setup lang="ts">
 import { useTemplateRef, onMounted, onUpdated } from 'vue'
 import { useRouter } from 'vue-router'
+import MediaUploadableImage from '../MediaUploadableImage.vue'
+import FileNameUtilties from '@/utilities/FileNameUtilities'
 
 const props = defineProps<{
   categoryName: string
   projectName: string
+  tileImageAzureName: string
   color: string
   show: boolean
 }>()
@@ -74,6 +85,7 @@ onUpdated(() => {
     height: 80px;
     border: 1px solid var(--color);
     border-radius: 100%;
+    overflow: hidden;
 
     &:hover {
       cursor: pointer;
